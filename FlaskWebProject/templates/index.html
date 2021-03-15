@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div>
+    <div class="row" style="margin-top: 25px;">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Amount</th>                    
+                    <th scope="col" />
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+            {% for income_expense in income_expenses %}
+            <tr>
+                <th scope="row">{{ income_expense.id }} </th>
+                <td>{{ income_expense.date }}</td>
+                <td>{{ income_expense.category}}</td>
+                <td>{{ income_expense.amount }}</td>                                
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <div class="row">
+        <p><a class="btn btn-default" href="{{ url_for('new_item') }}">Create New Item</a></p>
+    </div>
+</div>
+{% endblock %}
