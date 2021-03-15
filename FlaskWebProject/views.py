@@ -7,7 +7,7 @@ from flask import render_template, flash, redirect, request, session, url_for
 from werkzeug.urls import url_parse
 from config import Config
 from FlaskWebProject import app, db
-from FlaskWebProject.forms import LoginForm, PostForm
+from FlaskWebProject.forms import LoginForm, PostForm, IncomeExpenseForm
 from flask_login import current_user, login_user, logout_user, login_required
 from FlaskWebProject.models import User, Post, Income_Expense
 import msal
@@ -46,7 +46,7 @@ def new_post():
 @app.route('/new_item', methods=['GET', 'POST'])
 @login_required
 def new_item():
-    form = PostForm(request.form)
+    form = IncomeExpenseForm(request.form)
     if form.validate_on_submit():
         item = Income_Expense()
         item.save_changes(form, current_user.id, new=True)        
