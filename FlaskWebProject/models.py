@@ -83,6 +83,7 @@ class Income_Expense(db.Model):
     def save_changes(self, form, userId, new=False):
         self.category = form.category.data
         self.amount = form.amount.data
+        self.date = form.date.data
         self.user_id = userId
         
         if new:
