@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h1>{{ title }}</h1>
+<form action="" method="post" novalidate enctype="multipart/form-data">
+    {{ form.hidden_tag() }}
+    <div class="row">
+        <div class="col-sm-4">
+            <p>
+                {{ form.category.label }}<br>
+                {{ form.category(size=64) }}
+                {% for error in form.category.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+            </p>
+            <p>
+                {{ form.amount.label }}<br>
+                {{ form.amount(size=64) }} 
+                {% for error in form.amount.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}               
+            </p>
+            <p>
+                {{ form.date.label }}<br>
+                {{ form.date(size=32) }}
+                {% for error in form.date.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+            </p>            
+            <p>{{ form.submit() }}</p>
+        </div>        
+    </div>
+</form>
+{% endblock %}

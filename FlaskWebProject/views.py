@@ -43,6 +43,21 @@ def new_post():
         form=form
     )
 
+@app.route('/new_item', methods=['GET', 'POST'])
+@login_required
+def new_item():
+    form = PostForm(request.form)
+    if form.validate_on_submit():
+        item = Income_Expense()
+        item.save_changes(form, current_user.id, new=True)        
+        app.logger.info("Item successfully created.")
+        return redirect(url_for('home'))
+    return render_template(
+        'item.html',
+        title='Create Item',        
+        form=form
+    )    
+
 
 @app.route('/post/<int:id>', methods=['GET', 'POST'])
 @login_required
