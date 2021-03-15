@@ -22,7 +22,7 @@
             </p>
             <p>
                 {{ form.date.label }}<br>
-                {{ form.date(size=32) }}
+                {{ form.date() }}
                 {% for error in form.date.errors %}
                 <span style="color: red;">[{{ error }}]</span>
                 {% endfor %}
