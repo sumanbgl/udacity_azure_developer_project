@@ -23,5 +23,5 @@ class IncomeExpenseForm(FlaskForm):
     category = StringField('Category', validators=[DataRequired()])
     amount = IntegerField('Amount', validators=[DataRequired()])
     date = DateField('Date', format='%m/%d/%y',
-                          render_kw={'placeholder': '3/16/21 for March 16, 2021'}validators=[DataRequired()])
+                          render_kw={'placeholder': '3/16/21 for March 16, 2021'}, validators=[DataRequired()])
     submit = SubmitField('Save')    
