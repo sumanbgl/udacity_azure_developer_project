@@ -9,7 +9,7 @@ from config import Config
 from FlaskWebProject import app, db
 from FlaskWebProject.forms import LoginForm, IncomeExpenseForm
 from flask_login import current_user, login_user, logout_user, login_required
-from FlaskWebProject.models import User, Post, Income_Expense
+from FlaskWebProject.models import User, Income_Expense
 import msal
 import uuid
 
