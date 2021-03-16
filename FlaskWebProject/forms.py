@@ -11,14 +11,6 @@ class LoginForm(FlaskForm):
     remember_me = BooleanField('Remember Me')
     submit = SubmitField('Sign In')
 
-class PostForm(FlaskForm):
-    title = StringField('Title', validators=[DataRequired()])
-    subtitle = StringField('SubTitle', validators=[DataRequired()])
-    author = StringField('Author', validators=[DataRequired()])
-    body = TextAreaField('Body', validators=[DataRequired()])
-    image_path = FileField('Image', validators=[FileAllowed(['jpg', 'png'], 'Images only!')])
-    submit = SubmitField('Save')
-
 class IncomeExpenseForm(FlaskForm):
     category = StringField('Category', validators=[DataRequired()])
     amount = IntegerField('Amount', validators=[DataRequired()])

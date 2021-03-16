@@ -7,13 +7,11 @@ from flask import render_template, flash, redirect, request, session, url_for
 from werkzeug.urls import url_parse
 from config import Config
 from FlaskWebProject import app, db
-from FlaskWebProject.forms import LoginForm, PostForm, IncomeExpenseForm
+from FlaskWebProject.forms import LoginForm, IncomeExpenseForm
 from flask_login import current_user, login_user, logout_user, login_required
 from FlaskWebProject.models import User, Post, Income_Expense
 import msal
 import uuid
-
-imageSourceUrl = 'https://'+ app.config['BLOB_ACCOUNT']  + '.blob.core.windows.net/' + app.config['BLOB_CONTAINER']  + '/'
 
 @app.route('/')
 @app.route('/home')
@@ -25,22 +23,6 @@ def home():
         'index.html',
         title='Home Page',
         income_expenses=income_expenses
-    )
-
-@app.route('/new_post', methods=['GET', 'POST'])
-@login_required
-def new_post():
-    form = PostForm(request.form)
-    if form.validate_on_submit():
-        post = Post()
-        post.save_changes(form, request.files['image_path'], current_user.id, new=True)
-        app.logger.info("Post successfully created.")
-        return redirect(url_for('home'))
-    return render_template(
-        'post.html',
-        title='Create Post',
-        imageSource=imageSourceUrl,
-        form=form
     )
 
 @app.route('/new_item', methods=['GET', 'POST'])
@@ -58,21 +40,6 @@ def new_item():
         form=form
     )    
 
-
-@app.route('/post/<int:id>', methods=['GET', 'POST'])
-@login_required
-def post(id):
-    post = Post.query.get(int(id))
-    form = PostForm(formdata=request.form, obj=post)
-    if form.validate_on_submit():
-        post.save_changes(form, request.files['image_path'], current_user.id)
-        return redirect(url_for('home'))
-    return render_template(
-        'post.html',
-        title='Edit Post',
-        imageSource=imageSourceUrl,
-        form=form
-    )
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
